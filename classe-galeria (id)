@@ -1,0 +1,36 @@
+classe-galeria (id)
+	|
+	----corpo(classe "div")
+	|	|
+	|	----lateral(classe "div")
+	|	|	|
+	|	|	----informações(id "div")
+	|	|
+	|	----conteudo(classe "div")
+	|		|
+	|		----cabecalio(classe "div")
+	|		|	|
+	|		|	----infoAbreFecha(id "span") -> data-estado(aberto)
+	|		|	|
+	|		|	----close(id "span") -> data-gal(id do container-galeria)	
+	|		|	
+	|		----navegacao(classe "div")
+	|		|	|
+	|		|	----esquerda(classe "span")
+	|		|	|
+	|		|	----direita(classe "span")
+	|		|
+	|		|
+	|		----imagem(classe "div") -> carrega um id para ser identificado no click de um icone qualquer
+	|			|
+	|			----img(tag) 
+	|			|
+	|			----invisivel(classe "span")
+	|			|
+	|			---- Todo conteudo que deseja incluir para ser apresaentado em informações.
+	|
+	----rodape(classe)
+
+
+
+

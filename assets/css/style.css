@@ -1,0 +1,127 @@
+html, body{
+	height: 100%
+}
+.overlay{
+	position: fixed;
+	background: rgba(0,0,0,0.8);
+	width: 100%;
+	height: inherit;
+	top:0;
+	left:0;
+	z-index: -1;
+	
+}
+
+div.rodape{
+	background: rgba(0,0,0,.6)
+}
+
+.container-galeria{
+	height: inherit;
+	width: 90%;
+	margin: 0 auto;
+	padding: 10px
+}
+
+.cabecalio{
+	height: 5%;
+	position: absolute;
+	z-index: 4;
+	top:5px;
+	right: 5px;
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+	cursor: pointer;
+}
+
+.rodape{
+	height: 10%;
+	position: fixed;
+	width: 90%;
+	bottom:0;
+	z-index: 3;
+	opacity: 0.4
+	
+}
+.rodape:hover{
+	opacity: 1;
+}
+
+.rodape img{
+	height: 80%;
+	margin-left: 15px;
+	margin-top: 5px
+
+}
+
+.lateral{
+	float:left;
+	width: 30%;
+	height: 100%;
+	background: #fff;
+	padding: 10px;
+	box-sizing: border-box;
+	
+
+}
+.conteudo{
+	position: relative;
+	float:left;
+	width: 69%;
+	height: 100%;
+
+}
+
+.conteudo .imagem{
+	position: absolute;
+	z-index: 1;
+	display: none;
+	left: 0;
+	width:100%;
+	z-index: 1;
+
+}
+
+.conteudo > .imagem > img{
+	width:100% ;
+}
+
+.invisivel{
+	display: none;
+
+}
+
+.navegacao{
+	position: absolute;
+	z-index: 2;
+	width:100%;
+	top:50%;
+	opacity: .3
+}
+
+.navegacao:hover{
+	opacity: 1
+}
+
+.navegacao > span{
+	font-size: 6.5em;
+	color: #fff;
+	background: rgba(0,0,0,0.3);
+
+}
+
+.navegacao > span.esquerda{
+	float: left;
+	cursor: pointer;
+
+}
+
+.navegacao > span.direita{
+	float: right;
+	cursor: pointer;;
+
+}
+
+.poiter{
+	cursor: pointer;
+}

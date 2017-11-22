@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Galeria Maisys</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+</head>
+
+<body>
+	<a class="material-icons poiter galeria-maisys" data-gal='container-galeria'>image</a>
+	
+	<div class='overlay'> </div>
+
+	<div id="container-galeria" class='container-galeria'>
+		<div class="corpo">
+
+			<div class="lateral">
+				<div id='informacoes'></div>
+			</div>
+
+			<div class='conteudo'>
+				<div class="cabecalio">
+					<span id='infoAbreFecha' class="material-icons" data-estado='aberto'>info</span>
+					<span class="material-icons" id='close' data-gal='container-galeria'>cancel</span>
+				</div>
+				<div class="navegacao">
+					<span class="esquerda material-icons">keyboard_arrow_left</span>
+					<span class="direita material-icons">keyboard_arrow_right</span>
+
+				</div>
+				<div class="imagem" id='imagem1'>
+					<img src='assets/img/crisantemun.jpg'>
+					<span class='invisivel'>
+						<div>
+							<h3>Descrição</h3>
+							<p>Uma descrição qualquer para primeira imagem</p>
+						</div>
+						<div>
+							<h3>Quesitos</h3>
+							<ul>
+								<li>Quesito 1</li>
+								<li>Quesito 2</li>
+								<li>Quesito 3</li>
+							</ul>
+						</div>
+					</span>
+				</div>
+
+				<div class="imagem" id='imagem2'>
+					<img src='assets/img/Koala.jpg'>
+					<span class='invisivel'>
+						<div>
+							<h3>Descrição</h3>
+							<p>Projeto Preservação do Koala</p>
+						</div>
+						<div>
+							<h3>Quesitos</h3>
+							<ul>
+								<li>Não Matar</li>
+								<li>Plantar Mais Bambu</li>
+								<li>Incentivar Reprodução</li>
+							</ul>
+						</div>
+					</span>
+				</div>
+
+
+				<div class="imagem" id='imagem3'>
+					<img src='assets/img/Jellyfish.jpg'>
+					<span class='invisivel'>
+						<div>
+							<h3>Descrição</h3>
+							<p>Imagens Abstrata</p>
+						</div>
+						<div>
+							<h3>Quesitos</h3>
+							<ul>
+								<li>Tentar da Um significado</li>
+								<li>Não criticar antes de tentar entender</li>
+								<li>Construir clinica de reabilitação para quem as desenvolve</li>
+							</ul>
+						</div>
+					</span>
+				</div>
+
+			</div>
+
+		</div>
+		<div class="rodape"></div>
+	</div>
+	<script type="text/javascript" src='assets/js/jquery.js'></script>
+	<script type="text/javascript" src='assets/js/galeria_maisys.js'></script>
+	
+	<script type="text/javascript">Galeria('#container-galeria');</script>
+</body>
+</html>
