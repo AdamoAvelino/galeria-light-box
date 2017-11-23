@@ -1,167 +1,225 @@
-var Galeria = function (){
+/**
+ * [Galeria description]
+ *
+ *
+ * propriedade idContainer
+ * 
+ */
+ var Galeria = function(idCont)
+ {
 
-	addThumb();
+ 	this.idContainer = idCont,
 
-	setEventoElemento();
+ 	this.runGaleria = function(){
 
-	//nsole.log($(idcontainer +" .imagem:eq(0)"));
+ 		this.addThumb();
 
-	$(".container-galeria").css({display:'none'});
-	$(".overlay").css({display:'none'});
-	
-	$(".conteudo  .imagem:eq(0)").addClass("ativo").show();
-	
-	var conteudo = $(".conteudo  .imagem:eq(0) .invisivel").clone();
-	
-	conteudo.removeClass('invisivel');
-	
-	$('#informacoes').append(conteudo[0]);
+ 		this.setEventoElemento();
 
-	ajustaCorpo();
+ 		this.startGaleria();	
 
-	$('#infoAbreFecha').click(function(){
-		if($(this).attr('data-estado') == 'aberto'){
-			$('.lateral').css({width: '0', display: 'none' });
-			$('.conteudo').css({width: '100%'});
-			$(this).attr('data-estado', 'fechado')
+ 		this.inicializabotoes();
 
-		}else{
-			$('.lateral').css({width: '30%', display: 'bolck'});
-			$('.conteudo').css({width: '70%'});
-			$(this).attr('data-estado', 'aberto')
+ 		this.ajustaCorpo();
+ 	},
+
+ 	this.startGaleria = function()
+ 	{
+
+ 		$(this.idContainer).css({display:'none'});
+ 		$(".overlay").css({display:'none'});
+
+ 		$(this.idContainer+" .conteudo .imagem:eq(0)").addClass("ativo").show();
+
+ 		var conteudo = $(this.idContainer+" .conteudo  .imagem:eq(0) .invisivel").clone();
+
+ 		conteudo.removeClass('invisivel');
+
+ 		$(this.idContainer+' .informacoes').append(conteudo[0]);
+ 	},
+
+ 	this.inicializabotoes = function()
+ 	{
+ 		var container = this.idContainer
+ 		var esse = this;
+
+ 		$(container+' .infoAbreFecha').click(function(){
+ 			if($(this).attr('data-estado') == 'aberto'){
+ 				
+ 				$(container+' .lateral').css({width: '0', display: 'none' });
+ 				$(container+' .conteudo').css({width: '100%'});
+ 				$(this).attr('data-estado', 'fechado')
+
+ 			}else{
+
+ 				$(container+' .lateral').css({width: '30%', display: 'bolck'});
+ 				$(container+' .conteudo').css({width: '70%'});
+ 				$(this).attr('data-estado', 'aberto')
+ 			}
+
+
+ 			esse.ajustaCorpo();
+ 		});
+
+ 		$(this.idContainer+' .close').click(function(){
+
+ 			var galeria = $(this).attr('data-gal');
+ 			$('#'+galeria).css({display:'none'});
+ 			$('.overlay').css({display:'none'})			
+
+ 		});
+
+ 		$(this.idContainer+' .navegacao > span').bind('click', function () {
+ 			esse.slide(this);
+ 		})
+ 	},
+
+ 	this.slide = function(objClick)
+ 	{
+
+ 		if(objClick.getAttribute('class').indexOf('direita') === 0){
+ 			if($(this.idContainer+" .ativo").next().size()){
+
+ 				$(this.idContainer+' .informacoes > span:first').remove();
+
+ 				var conteudo = $(this.idContainer+" .ativo").next().find('span').clone();
+ 				conteudo.removeClass('invisivel');
+ 				$(this.idContainer+' .informacoes').append(conteudo[0]);
+
+ 				$(this.idContainer+" .ativo").fadeOut().removeClass("ativo").next().fadeIn().addClass("ativo");
+ 			}else {
+
+ 				$(this.idContainer+' .informacoes > span:first').remove();
+
+ 				$(this.idContainer+" .ativo").fadeOut().removeClass("ativo");
+
+ 				$(this.idContainer+" .conteudo .imagem:eq(0)").fadeIn().addClass("ativo");
+
+ 				var conteudo = $(".conteudo  .imagem:eq(0) .invisivel").clone();
+ 				conteudo.removeClass('invisivel');
+ 				$(this.idContainer+' .informacoes').append(conteudo[0]);
+ 			}
+
+
+ 		}else{ 
+
+ 			if($(this.idContainer+" .ativo").prev('.imagem').size()){
+
+ 				$(this.idContainer+' .informacoes > span:first').remove();
+
+ 				var conteudo = $(".ativo").prev().find('span').clone();
+ 				conteudo.removeClass('invisivel');
+ 				$(this.idContainer+' .informacoes').append(conteudo[0]);
+
+ 				$(this.idContainer+" .ativo").fadeOut().removeClass("ativo").prev().fadeIn().addClass("ativo");
+ 			}else {
+
+				//console.log($('.informacoes > span:last'))
+
+				$(this.idContainer+' .informacoes > span:last').remove();
+
+				$(this.idContainer+" .ativo").fadeOut().removeClass("ativo");
+
+				$(this.idContainer+" .conteudo .imagem:last").fadeIn().addClass("ativo");
+
+				var conteudo = $(".conteudo  .imagem:last .invisivel").clone();
+				conteudo.removeClass('invisivel');
+				$(this.idContainer+' .informacoes').append(conteudo[0]);
+			}
 		}
-
-
-		ajustaCorpo();
-	});
-
-	$('#close').click(function(){
 		
-		var galeria = $(this).attr('data-gal');
-		$('#'+galeria).css({display:'none'});
-		$('.overlay').css({display:'none'})			
+		this.ajustaCorpo();
 
-	});
+	},
 
-	$('.navegacao > span').bind('click', function () {
-		slide(this);
-	})
-}
+	this.ajustaCorpo = function()
+	{
+		$(this.idContainer+' .corpo').removeAttr('style');
+		var altura = $(this.idContainer+' .ativo').children().first('img').outerHeight();
+		$(this.idContainer+' .corpo').css({height: altura})
+	},
 
-
-
-
-function slide(objClick){
-	
-	if(objClick.getAttribute('class').indexOf('direita') === 0){
-		if($(".ativo").next().size()){
-
-			$('#informacoes > span:first').remove();
-
-			var conteudo = $(".ativo").next().find('span').clone();
-			conteudo.removeClass('invisivel');
-			$('#informacoes').append(conteudo[0]);
-
-			$(".ativo").fadeOut().removeClass("ativo").next().fadeIn().addClass("ativo");
-		}else {
-
-			$('#informacoes > span:first').remove();
-
-			$(".ativo").fadeOut().removeClass("ativo");
-
-			$(".conteudo .imagem:eq(0)").fadeIn().addClass("ativo");
-
-			var conteudo = $(".conteudo  .imagem:eq(0) .invisivel").clone();
-			conteudo.removeClass('invisivel');
-			$('#informacoes').append(conteudo[0]);
-		}
-
-
-	}else{ 
+	this.thumbNavegacao = function(eventoThumb){
+		$(this.idContainer+' .informacoes > span:first').remove();
+		var imagem = $(this.idContainer+" #"+$(eventoThumb).attr('data-thumb'))[0];
+		var conteudo = $(imagem).find('span').clone();
+		conteudo.removeClass('invisivel');
+		$(this.idContainer+' .informacoes').append(conteudo[0]);
+		$(this.idContainer+" .ativo").fadeOut().removeClass("ativo");
+		$(imagem).fadeIn().addClass("ativo");	
 		
-		if($(".ativo").prev('.imagem').size()){
+		this.ajustaCorpo();
+	},
 
-			$('#informacoes > span:first').remove();
+	this.addThumb = function()
+	{
+		var container = this.idContainer;
+		var esse = this;
 
-			var conteudo = $(".ativo").prev().find('span').clone();
-			conteudo.removeClass('invisivel');
-			$('#informacoes').append(conteudo[0]);
+		$(container+" .conteudo .imagem").each(function(){
+			console.log(container);
 
-			$(".ativo").fadeOut().removeClass("ativo").prev().fadeIn().addClass("ativo");
-		}else {
+			var thumb_arr = $(this).children().first('img');
+			var thumb = thumb_arr[0]
+		//console.log($(this.idContainer+" .conteudo .imagem"));
 
-			//console.log($('#informacoes > span:last'))
-
-			$('#informacoes > span:last').remove();
-
-			$(".ativo").fadeOut().removeClass("ativo");
-
-			$(".conteudo .imagem:last").fadeIn().addClass("ativo");
-
-			var conteudo = $(".conteudo  .imagem:last .invisivel").clone();
-			conteudo.removeClass('invisivel');
-			$('#informacoes').append(conteudo[0]);
-		}
-	}
-	ajustaCorpo();
-
-}
-
-
-
-function ajustaCorpo(){
-	$('.corpo').removeAttr('style');
-	var altura = $('.ativo').children().first('img').outerHeight();
-	$('.corpo').css({height: altura})
-}
-
-
-function thumbNavegacao(eventoThumb){
-	$('#informacoes > span:first').remove();
-	var imagem = $("#"+$(eventoThumb).attr('data-thumb'))[0];
-	var conteudo = $(imagem).find('span').clone();
-	conteudo.removeClass('invisivel');
-	$('#informacoes').append(conteudo[0]);
-	$(".ativo").fadeOut().removeClass("ativo");
-	$(imagem).fadeIn().addClass("ativo");	
-	
-	ajustaCorpo();
-}
-
-
-function setEventoElemento(){
-	$('.galeria-maisys').each(function(){
-		
-		$(this).click(function(){
-			var galeria = $(this).attr('data-gal');
-			$('#'+galeria).css({display:'block'});
-			$('.overlay').css({display:'block'})
-			ajustaCorpo();
-		});
-	});
-
-}
-
-function addThumb(){
-
-	$(".conteudo .imagem").each(function(){
-
-		var thumb_arr = $(this).children().first('img');
-		var thumb = thumb_arr[0]
-		
 		var dataThumb = $(thumb).parent().attr('id');
-		
+
 		var elementoThumb = $(thumb).clone();
 
 		$(elementoThumb).attr('data-thumb', dataThumb);
 
 		$(elementoThumb).click(function(){
-			thumbNavegacao(this);
-		})
+			esse.thumbNavegacao(this);
+		});
 
-		//console.log(dataThumb);
-		
-		$('.rodape').append(elementoThumb);
-	})
+			//console.log(dataThumb);
+			
+			$(container+' .rodape').append(elementoThumb);
+		});
 
+	},
+
+	this.setEventoElemento = function()
+	{
+		var esse = this;
+
+		$('.galeria-maisys').each(function(){
+			
+			$(this).click(function(){
+				var galeria = $(this).attr('data-gal');
+				var imagem = $(this).attr('data-img');
+				
+				$('#'+galeria).css({display:'block'});
+				$('.overlay').css({display:'block'})
+				
+				$('#'+imagem).addClass('ativo');
+
+				esse.ajustaCorpo();
+			});
+		});
+
+	}
+
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@
 </head>
 
 <body>
-	<a class="material-icons poiter galeria-maisys" data-gal='container-galeria'>image</a>
+	<a class="material-icons poiter galeria-maisys" data-gal='container-galeria' data-img='imagem1'>image</a>
 	
 	<div class='overlay'> </div>
 
@@ -16,13 +16,13 @@
 		<div class="corpo">
 
 			<div class="lateral">
-				<div id='informacoes'></div>
+				<div class='informacoes'></div>
 			</div>
 
 			<div class='conteudo'>
 				<div class="cabecalio">
-					<span id='infoAbreFecha' class="material-icons" data-estado='aberto'>info</span>
-					<span class="material-icons" id='close' data-gal='container-galeria'>cancel</span>
+					<span class='infoAbreFecha material-icons'  data-estado='aberto'>info</span>
+					<span class="close material-icons"  data-gal='container-galeria'>cancel</span>
 				</div>
 				<div class="navegacao">
 					<span class="esquerda material-icons">keyboard_arrow_left</span>
@@ -92,6 +92,9 @@
 	<script type="text/javascript" src='assets/js/jquery.js'></script>
 	<script type="text/javascript" src='assets/js/galeria_maisys.js'></script>
 	
-	<script type="text/javascript">Galeria('#container-galeria');</script>
+	<script type="text/javascript">
+	 var gal = new Galeria('#container-galeria');
+	 gal.runGaleria();
+	</script>
 </body>
 </html>
