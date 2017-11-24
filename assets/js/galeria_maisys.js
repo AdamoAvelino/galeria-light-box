@@ -127,7 +127,7 @@
 				$(this.idContainer+' .informacoes').append(conteudo[0]);
 			}
 		}
-		
+
 		this.ajustaCorpo();
 
 	},
@@ -183,6 +183,7 @@
 	this.setEventoElemento = function()
 	{
 		var esse = this;
+		var container = this.idContainer;
 
 		$('.galeria-maisys').each(function(){
 			
@@ -192,8 +193,18 @@
 				
 				$('#'+galeria).css({display:'block'});
 				$('.overlay').css({display:'block'})
+				console.log($('#'+imagem)[0]);
+
 				
-				$('#'+imagem).addClass('ativo');
+
+				$(container+" .ativo").fadeOut().removeClass("ativo");
+				
+				$('#'+imagem).fadeIn().addClass("ativo");
+
+				$(container+' .informacoes > span:first').remove();
+				var conteudo = $('#'+imagem).find('span').clone();
+				conteudo.removeClass('invisivel');
+				$(container+' .informacoes').append(conteudo[0]);
 
 				esse.ajustaCorpo();
 			});
